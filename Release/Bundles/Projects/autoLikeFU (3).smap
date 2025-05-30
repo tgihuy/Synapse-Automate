@@ -1,0 +1,675 @@
+{
+  "Id": "840be7d5-5166-4e9e-9ce5-95d23fea6dc9",
+  "Name": "New Workflow",
+  "GlobalVariables": {
+    "homeScreen": "false",
+    "ButtonExist": "false",
+    "user": "$username",
+    "pass": "$password",
+    "UseAnotherAccount": "false",
+    "LoginSucceed": "false",
+    "ChoosePage": "false",
+    "pageFound": "false",
+    "popupAppear": "false",
+    "checkLoggedIn": "false",
+    "NoneButton": "false"
+  },
+  "UserData": {
+    "username": "Text",
+    "password": "Text"
+  },
+  "Workflow": [
+    {
+      "Id": "ef82a7b6-76ac-495d-9cab-41532967be72",
+      "ActionName": "Close App1",
+      "ActionType": "CloseApp",
+      "Payload": {
+        "PackageApp": "com.facebook.lite"
+      }
+    },
+    {
+      "Id": "7f055c34-bd06-46b8-b3e5-69ed69f10bad",
+      "ActionName": "Delay2",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "2000"
+      }
+    },
+    {
+      "Id": "4b5d5486-b18a-432a-8daf-f04dadc06674",
+      "ActionName": "Open App1",
+      "ActionType": "OpenApp",
+      "Payload": {
+        "PackageApp": "com.facebook.lite"
+      }
+    },
+    {
+      "Id": "35c52c02-6b48-4195-bfae-d69ab6c1edc4",
+      "ActionName": "Delay3",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "3000"
+      }
+    },
+    {
+      "Id": "db582530-c8f5-4692-bd3a-f571d1a44ccc",
+      "ActionName": "None of above",
+      "ActionType": "FindAndClick",
+      "Payload": {
+        "ImageName": "none.png",
+        "Accuracy": "0.8",
+        "XPlus": "0",
+        "YPlus": "0",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "ClickTimes": "1",
+        "OutputVar": "NoneButton"
+      }
+    },
+    {
+      "Id": "10d28a5a-6a99-47ae-b5fd-24325e5172e4",
+      "ActionName": "Delay4",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "1000"
+      }
+    },
+    {
+      "Id": "0dc023ac-55c6-4cec-b534-da52fbd421ec",
+      "ActionName": "Check Home screen",
+      "ActionType": "IsExistImage",
+      "Payload": {
+        "ImageName": "facebookSignedIn.png",
+        "Accuracy": "0.8",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "OutputVar": "checkLoggedIn"
+      }
+    },
+    {
+      "Id": "9a4b8839-0796-4d4d-a599-1df3359084d1",
+      "ActionName": "If user logged in",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "checkLoggedIn": {
+            "Equal": "true"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "d2ad1458-06dc-46ca-a609-9702675c9c62",
+            "Name": "True Case",
+            "Workflow": []
+          },
+          "Default": {
+            "Id": "7465e9b9-824e-4c11-a186-e3dca3343016",
+            "Name": "Default Case",
+            "Workflow": [
+              {
+                "Id": "b5520de2-7619-4156-9312-0e51af7df000",
+                "ActionName": "Return to login screen",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "ReturnToDefaultScreen.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "0",
+                  "YPlus": "0",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "UseAnotherAccount"
+                }
+              },
+              {
+                "Id": "554eb647-347a-46d1-9e79-2c5ef5600d5d",
+                "ActionName": "If not in default login screen",
+                "ActionType": "If",
+                "Payload": {
+                  "Condition": {
+                    "UseAnotherAccount": {
+                      "Equal": "true"
+                    }
+                  },
+                  "Cases": {
+                    "True": {
+                      "Id": "f9b5fbfa-bf67-4d3f-8c83-f07fb62a99c7",
+                      "Name": "True Case",
+                      "Workflow": [
+                        {
+                          "Id": "50a2e1ed-d54f-432e-9bc6-f0884cf13cff",
+                          "ActionName": "Delay1",
+                          "ActionType": "Delay",
+                          "Payload": {
+                            "Duration": "2000"
+                          }
+                        }
+                      ]
+                    },
+                    "Default": {
+                      "Id": "6acc86f3-eac4-4796-aefb-c1c0862b9576",
+                      "Name": "Default Case",
+                      "Workflow": []
+                    }
+                  }
+                }
+              },
+              {
+                "Id": "cb454e31-e5a3-4987-b3d1-7c6fe0d2e79d",
+                "ActionName": "Select username texbox",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "86",
+                  "Y": "413",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "f32661e0-6d87-4dd6-8d32-62e20eaf4703",
+                "ActionName": "Delay2",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "3000"
+                }
+              },
+              {
+                "Id": "e507bbbf-b033-49f5-b1cb-e1f1ee81b98b",
+                "ActionName": "Send username",
+                "ActionType": "SendText",
+                "Payload": {
+                  "Text": "$user"
+                }
+              },
+              {
+                "Id": "bdb60cdf-14dd-485f-8ab6-4ca21b55eaec",
+                "ActionName": "Delay4",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "594b6062-651b-4e1b-bea8-21fe172fb525",
+                "ActionName": "Select password textbox",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "61",
+                  "Y": "473",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "2ee0ac4b-5b6d-4a2c-9de7-70910bde614a",
+                "ActionName": "Delay5",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "459fe544-9dd2-4442-bda2-623e561918e8",
+                "ActionName": "Send Password",
+                "ActionType": "SendText",
+                "Payload": {
+                  "Text": "$pass"
+                }
+              },
+              {
+                "Id": "6d88bd37-9a8b-484e-ab16-34caebe2cb68",
+                "ActionName": "Delay7",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "0815f82b-efb5-4bd3-9e96-6d5fa5263338",
+                "ActionName": "Click Login button",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "Login.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "0",
+                  "YPlus": "0",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "LoginSucceed"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "Id": "afab93cf-0962-4f43-a27e-5193356de02b",
+      "ActionName": "loop till one of two images exist",
+      "ActionType": "Loop",
+      "Payload": {
+        "Condition": [
+          {
+            "popupAppear": {
+              "Equal": "true"
+            }
+          },
+          {
+            "homeScreen": {
+              "Equal": "true"
+            }
+          }
+        ],
+        "Task": {
+          "Id": "53d697dd-01b5-4a6e-90d9-f0998953e30f",
+          "Name": "Loop Workflow",
+          "Workflow": [
+            {
+              "Id": "70b58dc0-5f0a-44f9-87f4-5519bff7e515",
+              "ActionName": "Pop up to save account",
+              "ActionType": "IsExistImage",
+              "Payload": {
+                "ImageName": "saveAccount.png",
+                "Accuracy": "0.8",
+                "StartCropX": "0",
+                "StartCropY": "0",
+                "CropWidth": "0",
+                "CropHeight": "0",
+                "OutputVar": "popupAppear"
+              }
+            },
+            {
+              "Id": "e6aa525c-60e4-465f-a0e2-3f4ad3f5ffdc",
+              "ActionName": "Delay1",
+              "ActionType": "Delay",
+              "Payload": {
+                "Duration": "1500"
+              }
+            },
+            {
+              "Id": "7a5837ab-ed33-42d2-aa91-8b68b9ec2d47",
+              "ActionName": "Check if logo facebook exist",
+              "ActionType": "IsExistImage",
+              "Payload": {
+                "ImageName": "facebookSignedIn.png",
+                "Accuracy": "0.8",
+                "StartCropX": "0",
+                "StartCropY": "0",
+                "CropWidth": "0",
+                "CropHeight": "0",
+                "OutputVar": "homeScreen"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Id": "7c3695fb-e1be-4641-8042-9bc2e79729cc",
+      "ActionName": "If pop up appear",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "popupAppear": {
+            "Equal": "false"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "5ee974f6-b62c-4a4e-b90e-8eb2355bd73c",
+            "Name": "True Case",
+            "Workflow": [
+              {
+                "Id": "2f01f343-f70f-41d5-b74d-ae07fb99d00d",
+                "ActionName": "Delay1",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "3000"
+                }
+              }
+            ]
+          },
+          "Default": {
+            "Id": "4203693b-a6c2-4552-987b-83f326b17bae",
+            "Name": "Default Case",
+            "Workflow": [
+              {
+                "Id": "7c166c7c-8a7b-4679-9800-037bddb624e8",
+                "ActionName": "FindAndClick1",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "saveAccount.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "0",
+                  "YPlus": "0",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "popupAppear"
+                }
+              },
+              {
+                "Id": "44c64074-6f8b-460d-9f34-155e6aaa79e3",
+                "ActionName": "Delay1",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "3000"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "Id": "cf91262f-e958-4cdd-a30c-2bb1e289c750",
+      "ActionName": "Check in HomeScreen",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "homeScreen": {
+            "Equal": "false"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "803f2196-42f0-4cc0-b883-7a8fe19f134d",
+            "Name": "True Case",
+            "Workflow": [
+              {
+                "Id": "cc8ae02f-69f6-4690-a023-35d9bb9aae75",
+                "ActionName": "Return to HomeScreen",
+                "ActionType": "Loop",
+                "Payload": {
+                  "Condition": {
+                    "homeScreen": {
+                      "Equal": "true"
+                    }
+                  },
+                  "Task": {
+                    "Id": "c6e205a1-7f56-472c-ab0c-73e3428208b5",
+                    "Name": "Loop Workflow",
+                    "Workflow": [
+                      {
+                        "Id": "6961bac6-0ec6-40c0-96f1-6dd24a8981fd",
+                        "ActionName": "IsExistImage1",
+                        "ActionType": "IsExistImage",
+                        "Payload": {
+                          "ImageName": "facebookSignedIn.png",
+                          "Accuracy": "0.8",
+                          "StartCropX": "2",
+                          "StartCropY": "6",
+                          "CropWidth": "184",
+                          "CropHeight": "75",
+                          "OutputVar": "homeScreen"
+                        }
+                      },
+                      {
+                        "Id": "f9106dd1-c035-45cd-8dab-92dbb35ece4c",
+                        "ActionName": "Delay1",
+                        "ActionType": "Delay",
+                        "Payload": {
+                          "Duration": "2000"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "Default": {
+            "Id": "85bc657c-cc1d-4312-aabb-5557354e3caf",
+            "Name": "Default Case",
+            "Workflow": [
+              {
+                "Id": "97f3f77d-39be-4e49-a160-f047a7b4a81a",
+                "ActionName": "Delay1",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "3000"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "Id": "d6ad25af-cef2-4c63-9009-1096efb9e4fc",
+      "ActionName": "Click on search icoin",
+      "ActionType": "ClickOnPosition",
+      "Payload": {
+        "X": "471",
+        "Y": "45",
+        "ClickTimes": "1"
+      }
+    },
+    {
+      "Id": "7af864b7-42f7-43d6-bfdb-bf8cd28cf5c2",
+      "ActionName": "Delay1",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "3000"
+      }
+    },
+    {
+      "Id": "cb127492-3650-4efd-a995-3d8a63edb331",
+      "ActionName": "Find \"dai hoc fpt\"",
+      "ActionType": "SendText",
+      "Payload": {
+        "Text": "dai hoc fpt"
+      }
+    },
+    {
+      "Id": "cd1ed60e-e6c7-4100-ab5e-f79a07655ab7",
+      "ActionName": "Delay2",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "2000"
+      }
+    },
+    {
+      "Id": "3a2f04cf-9e3c-4c3c-83c1-21962a79d8fa",
+      "ActionName": "Press Enter",
+      "ActionType": "SendKey",
+      "Payload": {
+        "Key": "Enter"
+      }
+    },
+    {
+      "Id": "e3370877-cc89-4ea2-8d8f-6d66c3a7faec",
+      "ActionName": "Delay3",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "2000"
+      }
+    },
+    {
+      "Id": "9e28cc04-e5db-42ff-bb08-9aeda681c687",
+      "ActionName": "Click on page button",
+      "ActionType": "FindAndClick",
+      "Payload": {
+        "ImageName": "pageButton.png",
+        "Accuracy": "0.8",
+        "XPlus": "0",
+        "YPlus": "0",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "ClickTimes": "1",
+        "OutputVar": "ChoosePage"
+      }
+    },
+    {
+      "Id": "94e5bd77-99a5-45d7-8e77-c7ad2f754eaf",
+      "ActionName": "Loop till find the page and click",
+      "ActionType": "Loop",
+      "Payload": {
+        "Condition": {
+          "pageFound": {
+            "Equal": "true"
+          }
+        },
+        "Task": {
+          "Id": "a37691d1-b23f-4fc3-9bae-2efa402c2f39",
+          "Name": "Loop Workflow",
+          "Workflow": [
+            {
+              "Id": "cb4b9e31-5392-49e1-a9f3-2db9bb2c9ac8",
+              "ActionName": "Delay1",
+              "ActionType": "Delay",
+              "Payload": {
+                "Duration": "3500"
+              }
+            },
+            {
+              "Id": "6fc48672-6e58-43dd-8896-9bbbe6341c14",
+              "ActionName": "FindAndClick1",
+              "ActionType": "FindAndClick",
+              "Payload": {
+                "ImageName": "daihocfpt.png",
+                "Accuracy": "0.8",
+                "XPlus": "0",
+                "YPlus": "0",
+                "StartCropX": "0",
+                "StartCropY": "0",
+                "CropWidth": "0",
+                "CropHeight": "0",
+                "ClickTimes": "1",
+                "OutputVar": "pageFound"
+              }
+            },
+            {
+              "Id": "b8363b3e-785c-4867-a5eb-eddd11725b56",
+              "ActionName": "If1",
+              "ActionType": "If",
+              "Payload": {
+                "Condition": {
+                  "pageFound": {
+                    "Equal": "false"
+                  }
+                },
+                "Cases": {
+                  "True": {
+                    "Id": "92cba91c-d94a-407d-ba21-121f941499dc",
+                    "Name": "True Case",
+                    "Workflow": [
+                      {
+                        "Id": "50a5c76e-806b-400c-a658-8e0ca11a8912",
+                        "ActionName": "Swipe till find Page",
+                        "ActionType": "Swipe",
+                        "Payload": {
+                          "X1": "504",
+                          "Y1": "402",
+                          "X2": "659",
+                          "Y2": "169",
+                          "DelaySecond": "500"
+                        }
+                      },
+                      {
+                        "Id": "309baa17-5c0f-4e02-8f3e-c2e547988cc4",
+                        "ActionName": "Delay1",
+                        "ActionType": "Delay",
+                        "Payload": {
+                          "Duration": "1000"
+                        }
+                      }
+                    ]
+                  },
+                  "Default": {
+                    "Id": "a6a0f1dc-573b-4459-b2ca-149644960613",
+                    "Name": "Default Case",
+                    "Workflow": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Id": "b440adea-08f3-496f-bfec-331be305d695",
+      "ActionName": "Delay1",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "3000"
+      }
+    },
+    {
+      "Id": "d0e01463-1459-4d80-98d8-ee8a94bbcf39",
+      "ActionName": "Auto press button like",
+      "ActionType": "Loop",
+      "Payload": {
+        "Condition": {
+          "ButtonExist": {
+            "Equal": "true"
+          }
+        },
+        "Task": {
+          "Id": "78c1dec2-11d2-4460-9444-57ac90068e28",
+          "Name": "Loop Workflow",
+          "Workflow": [
+            {
+              "Id": "e5471e61-ec9c-426e-9fdd-616f6da62f98",
+              "ActionName": "Swipe1",
+              "ActionType": "Swipe",
+              "Payload": {
+                "X1": "264",
+                "Y1": "564",
+                "X2": "333",
+                "Y2": "106",
+                "DelaySecond": "800"
+              }
+            },
+            {
+              "Id": "a686233f-3ef2-4766-9a4e-75f180117b5f",
+              "ActionName": "Delay1",
+              "ActionType": "Delay",
+              "Payload": {
+                "Duration": "2500"
+              }
+            },
+            {
+              "Id": "2b37ca75-eb3d-4669-9168-e2f33cf4f3f5",
+              "ActionName": "FindAndClick1",
+              "ActionType": "FindAndClick",
+              "Payload": {
+                "ImageName": "buttonLike.png",
+                "Accuracy": "0.8",
+                "XPlus": "0",
+                "YPlus": "0",
+                "StartCropX": "0",
+                "StartCropY": "0",
+                "CropWidth": "0",
+                "CropHeight": "0",
+                "ClickTimes": "1",
+                "OutputVar": "ButtonExist"
+              }
+            },
+            {
+              "Id": "4c70cdc0-a92b-4b1f-9d44-08bc6b3cefcf",
+              "ActionName": "SetVar1",
+              "ActionType": "SetVar",
+              "Payload": {
+                "Key": "ButtonExist",
+                "Value": "false"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

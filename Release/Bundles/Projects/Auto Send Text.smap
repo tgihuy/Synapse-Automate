@@ -1,0 +1,108 @@
+{
+  "Id": "64aa4b4a-2539-4217-a1d4-c0266426d140",
+  "Name": "New Workflow",
+  "GlobalVariables": {
+    "Google": "false"
+  },
+  "UserData": {},
+  "Workflow": [
+    {
+      "Id": "ec1d7339-d3cb-4ba3-a274-8d982ed3a78f",
+      "ActionName": "Close App1",
+      "ActionType": "CloseApp",
+      "Payload": {
+        "PackageApp": "com.android.chrome"
+      }
+    },
+    {
+      "Id": "b3ad3f3b-636b-4b85-b998-720c1a18a045",
+      "ActionName": "Open App1",
+      "ActionType": "OpenApp",
+      "Payload": {
+        "PackageApp": "com.android.chrome"
+      }
+    },
+    {
+      "Id": "4adb370c-8108-4edf-9f60-fd9f4f8dec0c",
+      "ActionName": "Loop1",
+      "ActionType": "Loop",
+      "Payload": {
+        "Condition": {
+          "Google": {
+            "Equal": "true"
+          }
+        },
+        "Task": {
+          "Id": "154fe05f-5ec3-43b1-8df2-93021fbd9245",
+          "Name": "Loop Workflow",
+          "Workflow": [
+            {
+              "Id": "128acad8-0957-4ac5-a960-67c86e850205",
+              "ActionName": "Delay1",
+              "ActionType": "Delay",
+              "Payload": {
+                "Duration": "1000"
+              }
+            },
+            {
+              "Id": "7be73cb7-6bfd-4828-bb06-ebf1426710b0",
+              "ActionName": "IsExistImage1",
+              "ActionType": "IsExistImage",
+              "Payload": {
+                "ImageName": "googleandroid.png",
+                "Accuracy": "0.8",
+                "StartCropX": "0",
+                "StartCropY": "0",
+                "CropWidth": "0",
+                "CropHeight": "0",
+                "OutputVar": "Google"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Id": "f00804ad-d4ce-4d13-a49b-0a4fd4da0f70",
+      "ActionName": "Delay1",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "3000"
+      }
+    },
+    {
+      "Id": "6524dd30-b1d8-411b-831e-9606dde584b3",
+      "ActionName": "Click On Position1",
+      "ActionType": "ClickOnPosition",
+      "Payload": {
+        "X": "204",
+        "Y": "368",
+        "ClickTimes": "1"
+      }
+    },
+    {
+      "Id": "c4757367-4d5e-45d7-8589-97bfae15214f",
+      "ActionName": "Delay2",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "6000"
+      }
+    },
+    {
+      "Id": "7949b8ff-f385-4500-9da9-eb59ab62bb7e",
+      "ActionName": "Send Text1",
+      "ActionType": "SendText",
+      "Payload": {
+        "Text": "synapseauto.tech"
+      }
+    },
+    {
+      "Id": "8a864d13-09c0-4548-aded-5564864c45f1",
+      "ActionName": "Send Key1",
+      "ActionType": "SendKey",
+      "Payload": {
+        "Key": "Enter"
+      }
+    }
+  ]
+}

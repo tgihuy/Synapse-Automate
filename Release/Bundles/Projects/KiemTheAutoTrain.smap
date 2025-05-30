@@ -1,0 +1,797 @@
+{
+  "Id": "50331de6-3088-4fc3-9121-264153714027",
+  "Name": "New Workflow",
+  "GlobalVariables": {
+    "GoogleExist": "false",
+    "VaoGiangHoExist": "false",
+    "LoginSuccess": "false",
+    "TuLuyen": "false",
+    "MapTrain1": "$Bo Ho Truc Lam",
+    "MapTheGioi": "false",
+    "MapTrain2": "$Thai Hanh Co Kinh",
+    "Ten Map Train": "",
+    "DenViTriTrain": "false",
+    "Mo Menu": "false",
+    "Bat Dau Tu Luyen": "false",
+    "kiemthe": "false"
+  },
+  "UserData": {
+    "Bo Ho Truc Lam": "True/False",
+    "Thai Hanh Co Kinh": "True/False"
+  },
+  "Workflow": [
+    {
+      "Id": "75e8d725-bb56-4931-906a-94544b726073",
+      "ActionName": "Check mo game",
+      "ActionType": "IsExistImage",
+      "Payload": {
+        "ImageName": "thien.png",
+        "Accuracy": "0.8",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "OutputVar": "LoginSuccess"
+      }
+    },
+    {
+      "Id": "51ae75c0-4d57-4d57-b0ca-82776b27d79f",
+      "ActionName": "Check mo game2 ",
+      "ActionType": "IsExistImage",
+      "Payload": {
+        "ImageName": "kiemthe.png",
+        "Accuracy": "0.8",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "OutputVar": "kiemthe"
+      }
+    },
+    {
+      "Id": "bce7d1d4-31dc-40c7-b2aa-a4b3955ea4df",
+      "ActionName": "Neu chua mo app",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": [
+          {
+            "LoginSuccess": {
+              "Equal": "true"
+            }
+          },
+          {
+            "kiemthe": {
+              "NotEqual": "true"
+            }
+          }
+        ],
+        "Cases": {
+          "True": {
+            "Id": "adb52736-1699-4a60-948c-904db2e66060",
+            "Name": "True Case",
+            "Workflow": []
+          },
+          "Default": {
+            "Id": "25be20d1-2624-482f-8003-66fd0c573726",
+            "Name": "Default Case",
+            "Workflow": [
+              {
+                "Id": "25a8ad65-999b-45c7-88e6-6e5e2116f2e5",
+                "ActionName": "Mo Game",
+                "ActionType": "OpenApp",
+                "Payload": {
+                  "PackageApp": "vnggames.volam.kiemthe.origin"
+                }
+              },
+              {
+                "Id": "399be6ff-dca6-429c-9ea8-ff0cab62a136",
+                "ActionName": "Dang nhap google",
+                "ActionType": "Loop",
+                "Payload": {
+                  "Condition": {
+                    "GoogleExist": {
+                      "Equal": "true"
+                    }
+                  },
+                  "Task": {
+                    "Id": "a2356e98-2848-4a2e-b550-f8112e966eca",
+                    "Name": "Loop Workflow",
+                    "Workflow": [
+                      {
+                        "Id": "4259822c-63a9-4030-9468-30945b923a2a",
+                        "ActionName": "Delay1",
+                        "ActionType": "Delay",
+                        "Payload": {
+                          "Duration": "1000"
+                        }
+                      },
+                      {
+                        "Id": "aafdb0f4-d55c-4e37-ad34-9263bcc477b5",
+                        "ActionName": "FindAndClick1",
+                        "ActionType": "FindAndClick",
+                        "Payload": {
+                          "ImageName": "google.png",
+                          "Accuracy": "0.8",
+                          "XPlus": "0",
+                          "YPlus": "0",
+                          "StartCropX": "0",
+                          "StartCropY": "0",
+                          "CropWidth": "0",
+                          "CropHeight": "0",
+                          "ClickTimes": "1",
+                          "OutputVar": "GoogleExist"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "Id": "503ae081-3edc-4596-aae0-7f770af71e59",
+                "ActionName": "Vao game",
+                "ActionType": "Loop",
+                "Payload": {
+                  "Condition": [
+                    {
+                      "VaoGiangHoExist": {
+                        "Equal": "true"
+                      }
+                    }
+                  ],
+                  "Task": {
+                    "Id": "a130e82a-1a43-458f-bb8d-1c3a0419e973",
+                    "Name": "Loop Workflow",
+                    "Workflow": [
+                      {
+                        "Id": "e8e69438-7969-41c1-91ec-36b920d5da54",
+                        "ActionName": "Delay1",
+                        "ActionType": "Delay",
+                        "Payload": {
+                          "Duration": "1000"
+                        }
+                      },
+                      {
+                        "Id": "4ac37a56-2b81-47c5-85a4-965d448f66c3",
+                        "ActionName": "FindAndClick1",
+                        "ActionType": "FindAndClick",
+                        "Payload": {
+                          "ImageName": "vaogiangho.png",
+                          "Accuracy": "0.8",
+                          "XPlus": "0",
+                          "YPlus": "0",
+                          "StartCropX": "0",
+                          "StartCropY": "0",
+                          "CropWidth": "0",
+                          "CropHeight": "0",
+                          "ClickTimes": "1",
+                          "OutputVar": "VaoGiangHoExist"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "Id": "b1add841-a720-4d9c-bc43-158b7569f14d",
+                "ActionName": "Delay1",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "3000"
+                }
+              },
+              {
+                "Id": "1fb26c45-e29a-4c61-a4fd-c705d317af8f",
+                "ActionName": "Nhan dang nhap",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "850",
+                  "Y": "472",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "8dacf6b8-00f6-4e7e-b633-7e787aaa66e9",
+                "ActionName": "Delay3",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "5000"
+                }
+              },
+              {
+                "Id": "a34c4a3b-189f-4632-8ac8-0e7b492ebd50",
+                "ActionName": "IsExistImage1",
+                "ActionType": "IsExistImage",
+                "Payload": {
+                  "ImageName": "thien.png",
+                  "Accuracy": "0.8",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "OutputVar": "LoginSuccess"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "Id": "51019d34-bce0-48b6-bbe6-6ee49c8f8bfc",
+      "ActionName": "Dong menu",
+      "ActionType": "FindAndClick",
+      "Payload": {
+        "ImageName": "dongmenu2.png",
+        "Accuracy": "0.8",
+        "XPlus": "20",
+        "YPlus": "20",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "ClickTimes": "1",
+        "OutputVar": "example output"
+      }
+    },
+    {
+      "Id": "b2a0a01f-c293-4c5c-8f4c-e5dcf75f7028",
+      "ActionName": "Mo Map",
+      "ActionType": "ClickOnPosition",
+      "Payload": {
+        "X": "894",
+        "Y": "89",
+        "ClickTimes": "1"
+      }
+    },
+    {
+      "Id": "1a1e29f0-6ae2-46f2-b4ac-507c8f4366fd",
+      "ActionName": "Delay2",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "3000"
+      }
+    },
+    {
+      "Id": "190c525c-46d7-4343-8a51-bd8d0ed92e25",
+      "ActionName": "Mo map the gioi",
+      "ActionType": "FindAndClick",
+      "Payload": {
+        "ImageName": "mapthegioi.png",
+        "Accuracy": "0.8",
+        "XPlus": "0",
+        "YPlus": "0",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "ClickTimes": "1",
+        "OutputVar": "MapTheGioi"
+      }
+    },
+    {
+      "Id": "15d87839-0882-4a9d-bbc5-0810d0b27bf1",
+      "ActionName": "Delay1",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "3000"
+      }
+    },
+    {
+      "Id": "58816a81-5bd7-4c25-89fe-574d79f7f20d",
+      "ActionName": "Check map train1",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "MapTrain1": {
+            "Equal": "true"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "69d2dfdd-ea49-4e07-b1cf-46811c5988f5",
+            "Name": "True Case",
+            "Workflow": [
+              {
+                "Id": "9fee1376-62ea-404f-8b25-e31f7d5c720b",
+                "ActionName": "SetVar1",
+                "ActionType": "SetVar",
+                "Payload": {
+                  "Key": "Ten Map Train",
+                  "Value": "BoHoTrucLam"
+                }
+              }
+            ]
+          },
+          "Default": {
+            "Id": "f1af1d24-303b-4c90-aeeb-646e3d18d515",
+            "Name": "Default Case",
+            "Workflow": []
+          }
+        }
+      }
+    },
+    {
+      "Id": "a473db97-8e88-4c81-9dac-2c5fdce11100",
+      "ActionName": "Check map train2",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "MapTrain2": {
+            "Equal": "true"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "ffc212c8-4933-4d8b-82e4-187bca3272d4",
+            "Name": "True Case",
+            "Workflow": [
+              {
+                "Id": "2b87335d-4d7d-42e8-8ae8-1ffa8634a9de",
+                "ActionName": "SetVar1",
+                "ActionType": "SetVar",
+                "Payload": {
+                  "Key": "Ten Map Train",
+                  "Value": "ThaiHanhCoKinh"
+                }
+              }
+            ]
+          },
+          "Default": {
+            "Id": "018f7ee0-3263-4e07-91d8-a477141bd9a7",
+            "Name": "Default Case",
+            "Workflow": []
+          }
+        }
+      }
+    },
+    {
+      "Id": "12f1cbb2-720e-4384-a08b-90a14eb808c5",
+      "ActionName": "Check map train3",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "MapTrain3": {
+            "Equal": "true"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "94663931-4158-4330-b244-20bedff92d8f",
+            "Name": "True Case",
+            "Workflow": [
+              {
+                "Id": "264dc52e-efb1-46a1-9620-b95b47742646",
+                "ActionName": "SetVar1",
+                "ActionType": "SetVar",
+                "Payload": {
+                  "Key": "Ten Map Train",
+                  "Value": "HanThuyCoDo"
+                }
+              }
+            ]
+          },
+          "Default": {
+            "Id": "50a0eefc-b239-42b9-a019-dbb59a8520b6",
+            "Name": "Default Case",
+            "Workflow": []
+          }
+        }
+      }
+    },
+    {
+      "Id": "df721c1d-acad-444d-807f-5eb4ae281c60",
+      "ActionName": "Di Den Map train",
+      "ActionType": "Switch",
+      "Payload": {
+        "Case": "$Ten Map Train",
+        "Cases": {
+          "BoHoTrucLam": {
+            "Id": "1f545b54-816a-4656-93fc-63839806ea0e",
+            "Name": "BoHoTrucLam",
+            "Workflow": [
+              {
+                "Id": "98f068b0-8bce-4b1e-b647-150f174118ae",
+                "ActionName": "Swipe1",
+                "ActionType": "Swipe",
+                "Payload": {
+                  "X1": "904",
+                  "Y1": "491",
+                  "X2": "459",
+                  "Y2": "233",
+                  "DelaySecond": "2000"
+                }
+              },
+              {
+                "Id": "ccca2f41-45ca-454b-b9da-b82463e898c9",
+                "ActionName": "Delay1",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "c9fb3f4c-cebc-4411-8327-26674abd2674",
+                "ActionName": "Di toi bo ho truc lam",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "bohotruclam.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "50",
+                  "YPlus": "50",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "example output"
+                }
+              },
+              {
+                "Id": "e08e55d9-a053-404c-a556-a5cbaa0deb99",
+                "ActionName": "Delay2",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "5000"
+                }
+              },
+              {
+                "Id": "4276c2aa-f033-426a-8e36-44b3dabe4729",
+                "ActionName": "Dong map neu da o dung",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "dongmenu2.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "20",
+                  "YPlus": "20",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "example output"
+                }
+              },
+              {
+                "Id": "a963bbae-2840-4ea6-acd2-1cffa9079643",
+                "ActionName": "Delay4",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "1000"
+                }
+              },
+              {
+                "Id": "6982447c-0e2d-4d50-8a5f-c2a758c9b705",
+                "ActionName": "Mo map",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "894",
+                  "Y": "89",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "a85e029e-342a-4221-a1d2-74a9b97d60fa",
+                "ActionName": "Delay3",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "1d528e1e-5a1e-4554-b218-f384f867f033",
+                "ActionName": "Di toi cho train",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "405",
+                  "Y": "312",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "0d240d46-9cac-4d14-a1ac-3b6441b32a78",
+                "ActionName": "Loop1",
+                "ActionType": "Loop",
+                "Payload": {
+                  "Condition": {
+                    "DenViTriTrain": {
+                      "Equal": "true"
+                    }
+                  },
+                  "Task": {
+                    "Id": "a3f9ce46-2710-475a-9424-d54ab840dd13",
+                    "Name": "Loop Workflow",
+                    "Workflow": [
+                      {
+                        "Id": "846ad70f-e58c-4cea-aab9-c97a34009b46",
+                        "ActionName": "IsExistImage1",
+                        "ActionType": "IsExistImage",
+                        "Payload": {
+                          "ImageName": "dadenbohotruclam.png",
+                          "Accuracy": "0.8",
+                          "StartCropX": "0",
+                          "StartCropY": "0",
+                          "CropWidth": "0",
+                          "CropHeight": "0",
+                          "OutputVar": "DenViTriTrain"
+                        }
+                      },
+                      {
+                        "Id": "d60cfd43-11ba-4bec-8435-5816f4519632",
+                        "ActionName": "Delay1",
+                        "ActionType": "Delay",
+                        "Payload": {
+                          "Duration": "2000"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "ThaiHanhCoKinh": {
+            "Id": "dbd49430-c79f-4b6c-a706-c9c17b201172",
+            "Name": "ThaiHanhCoKinh",
+            "Workflow": [
+              {
+                "Id": "92bb7883-f208-4f86-8889-f0f6c8f5c3ce",
+                "ActionName": "Swipe1",
+                "ActionType": "Swipe",
+                "Payload": {
+                  "X1": "862",
+                  "Y1": "83",
+                  "X2": "505",
+                  "Y2": "298",
+                  "DelaySecond": "2000"
+                }
+              },
+              {
+                "Id": "370b56d6-2b83-4d74-b945-b8506a82118d",
+                "ActionName": "Delay1",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "df56a6ed-4975-4ebf-b713-693eeec79a85",
+                "ActionName": "FindAndClick1",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "thaihanhcokinh.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "50",
+                  "YPlus": "50",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "example output"
+                }
+              },
+              {
+                "Id": "fde1c4e6-776f-4c72-81da-cfe9e2c56c20",
+                "ActionName": "Delay2",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "5000"
+                }
+              },
+              {
+                "Id": "e3a63aeb-ef8a-4f71-98ae-7de7bd6f0ff7",
+                "ActionName": "FindAndClick2",
+                "ActionType": "FindAndClick",
+                "Payload": {
+                  "ImageName": "dongmenu2.png",
+                  "Accuracy": "0.8",
+                  "XPlus": "20",
+                  "YPlus": "20",
+                  "StartCropX": "0",
+                  "StartCropY": "0",
+                  "CropWidth": "0",
+                  "CropHeight": "0",
+                  "ClickTimes": "1",
+                  "OutputVar": "example output"
+                }
+              },
+              {
+                "Id": "0fc162d0-b7fa-4eb9-9fce-75385942732b",
+                "ActionName": "Delay3",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "1000"
+                }
+              },
+              {
+                "Id": "6909d91e-67a6-45d6-958e-93551d8c1823",
+                "ActionName": "ClickOnPosition1",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "894",
+                  "Y": "89",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "4f1f51ae-ca38-4b54-af5a-e36c2720ad5c",
+                "ActionName": "Delay4",
+                "ActionType": "Delay",
+                "Payload": {
+                  "Duration": "2000"
+                }
+              },
+              {
+                "Id": "986ab20e-85cd-4234-a70b-b9c76f7e04c9",
+                "ActionName": "ClickOnPosition2",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "563",
+                  "Y": "301",
+                  "ClickTimes": "1"
+                }
+              },
+              {
+                "Id": "3f376570-4285-4fa3-b0eb-db58eaf781e4",
+                "ActionName": "Loop1",
+                "ActionType": "Loop",
+                "Payload": {
+                  "Condition": {
+                    "DenViTriTrain": {
+                      "Equal": "true"
+                    }
+                  },
+                  "Task": {
+                    "Id": "8e0f3335-c083-4cb8-9f09-30385a80ae9b",
+                    "Name": "Loop Workflow",
+                    "Workflow": [
+                      {
+                        "Id": "7e4784df-c959-4834-9563-f134eea3264e",
+                        "ActionName": "IsExistImage1",
+                        "ActionType": "IsExistImage",
+                        "Payload": {
+                          "ImageName": "didenthaihanhcokinh.png",
+                          "Accuracy": "0.8",
+                          "StartCropX": "0",
+                          "StartCropY": "0",
+                          "CropWidth": "0",
+                          "CropHeight": "0",
+                          "OutputVar": "DenViTriTrain"
+                        }
+                      },
+                      {
+                        "Id": "e7b92c8b-b4f9-4021-8b79-e1131f070460",
+                        "ActionName": "Delay1",
+                        "ActionType": "Delay",
+                        "Payload": {
+                          "Duration": "2000"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "Id": "d46d950a-b714-491e-81f0-91775ec2f6da",
+      "ActionName": "Delay4",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "1000"
+      }
+    },
+    {
+      "Id": "0a66bbed-81ba-4028-990a-d473230566b6",
+      "ActionName": "Dong map",
+      "ActionType": "FindAndClick",
+      "Payload": {
+        "ImageName": "dongmenu.png",
+        "Accuracy": "0.8",
+        "XPlus": "20",
+        "YPlus": "20",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "ClickTimes": "1",
+        "OutputVar": "example output"
+      }
+    },
+    {
+      "Id": "d4645928-6e7e-4d28-8291-045cae6c6a2f",
+      "ActionName": "Delay3",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "2000"
+      }
+    },
+    {
+      "Id": "4e1b038a-033e-451d-ab28-5a04efde0af0",
+      "ActionName": "Mo tu luyen",
+      "ActionType": "ClickOnPosition",
+      "Payload": {
+        "X": "724",
+        "Y": "87",
+        "ClickTimes": "1"
+      }
+    },
+    {
+      "Id": "bbc4c163-2a13-42d6-aa0e-e6644e92bb5a",
+      "ActionName": "Delay5",
+      "ActionType": "Delay",
+      "Payload": {
+        "Duration": "1000"
+      }
+    },
+    {
+      "Id": "95e8b0ba-2807-4d11-a8a3-c6dd4f142b54",
+      "ActionName": "Kiem tra tu luyen",
+      "ActionType": "IsExistImage",
+      "Payload": {
+        "ImageName": "chuamotuluyen.png",
+        "Accuracy": "0.8",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "OutputVar": "Bat Dau Tu Luyen"
+      }
+    },
+    {
+      "Id": "b833dc2c-2988-4e21-95fb-313b6b8223ff",
+      "ActionName": "Neu da bat dau tu luyen",
+      "ActionType": "If",
+      "Payload": {
+        "Condition": {
+          "Bat Dau Tu Luyen": {
+            "NotEqual": "true"
+          }
+        },
+        "Cases": {
+          "True": {
+            "Id": "50f64de7-a17f-4b2f-9813-4e9855ca8ff5",
+            "Name": "True Case",
+            "Workflow": []
+          },
+          "Default": {
+            "Id": "58d8209a-e2d6-478e-ba12-1aa9b0d7fa37",
+            "Name": "Default Case",
+            "Workflow": [
+              {
+                "Id": "34884664-550c-4f81-8df8-b0afffe7a874",
+                "ActionName": "ClickOnPosition1",
+                "ActionType": "ClickOnPosition",
+                "Payload": {
+                  "X": "269",
+                  "Y": "481",
+                  "ClickTimes": "1"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "Id": "395fcb93-c7a6-4125-b4b7-bd81a8bb9d4e",
+      "ActionName": "Find And Click1",
+      "ActionType": "FindAndClick",
+      "Payload": {
+        "ImageName": "dongmenu.png",
+        "Accuracy": "0.8",
+        "XPlus": "0",
+        "YPlus": "0",
+        "StartCropX": "0",
+        "StartCropY": "0",
+        "CropWidth": "0",
+        "CropHeight": "0",
+        "ClickTimes": "1",
+        "OutputVar": "example output"
+      }
+    }
+  ]
+}
